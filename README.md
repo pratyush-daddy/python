@@ -1,3 +1,166 @@
+### Q3 : Suppose you have a dataframe df with the following columns:
+
+id: a unique identifier for each row<br>
+group: a categorical variable with 3 possible values: 'A', 'B', or 'C'<br>
+timestamp: a datetime object representing the time that each row was recorded<br>
+value: a numerical value for each row<br>
+Write a function get_top_n_values_by_group(df, n) that returns a dataframe with the top n values for each group, ordered by timestamp (earliest to latest). The resulting dataframe should have the same columns as the original dataframe.<br>
+
+df = pd.DataFrame({<br>
+> 'id': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],<br>
+    'group': ['A', 'A', 'A', 'B', 'B', 'B', 'C', 'C', 'C', 'A', 'B', 'C', 'A', 'C', 'C'],<br>
+    'timestamp': pd.to_datetime(['2022-01-01 00:00:03', '2022-01-01 00:00:01', '2022-01-01 00:00:02',<br>
+                                 '2022-01-01 00:00:04', '2022-01-01 00:00:02', '2022-01-01 00:00:01',<br>
+                                 '2022-01-01 00:00:03', '2022-01-01 00:00:02', '2022-01-01 00:00:01',<br>
+                                 '2022-01-01 00:00:04', '2022-01-01 00:00:03', '2022-01-01 00:00:02',<br>
+                                 '2022-01-01 00:00:01', '2022-01-01 00:00:05', '2022-01-01 00:00:06']),<br>
+    'value': [15, 20, 10, 22, 25, 18, 30, 28, 27, 12, 23, 26, 17,18,19]})
+    
+
+```python
+from IPython.display import display
+
+def get_top_n_values_by_group(df, n):
+    df.sort_values(by=['timestamp'])
+    display(df.groupby('group').head(n))
+    
+df = pd.DataFrame({
+    'id': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    'group': ['A', 'A', 'A', 'B', 'B', 'B', 'C', 'C', 'C', 'A', 'B', 'C', 'A', 'C', 'C'],
+    'timestamp': pd.to_datetime(['2022-01-01 00:00:03', '2022-01-01 00:00:01', '2022-01-01 00:00:02',
+                                 '2022-01-01 00:00:04', '2022-01-01 00:00:02', '2022-01-01 00:00:01',
+                                 '2022-01-01 00:00:03', '2022-01-01 00:00:02', '2022-01-01 00:00:01',
+                                 '2022-01-01 00:00:04', '2022-01-01 00:00:03', '2022-01-01 00:00:02',
+                                 '2022-01-01 00:00:01', '2022-01-01 00:00:05', '2022-01-01 00:00:06']),
+    'value': [15, 20, 10, 22, 25, 18, 30, 28, 27, 12, 23, 26, 17,18,19]})
+
+get_top_n_values_by_group(df, 2)
+
+
+```
+
+```python
+
+id	group	timestamp	value
+0	1	A	2022-01-01 00:00:03	15
+1	2	A	2022-01-01 00:00:01	20
+3	4	B	2022-01-01 00:00:04	22
+4	5	B	2022-01-01 00:00:02	25
+6	7	C	2022-01-01 00:00:03	30
+7	8	C	2022-01-01 00:00:02	28
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Q : Question: Given a DataFrame df with columns A, B, and C, write a function to return a new DataFrame with the following criteria:
+
+The rows where A is greater than 5 <br>
+The rows where B is between 10 and 20 (inclusive) <br>
+The rows where C is not null <br>
+The rows are sorted in descending order of A <br>
+
+you can create dataframe based on your own assumption.
+
+```python
+data = {'A' : [13, 34, 11, 17, 12, np.nan, 45, 4],
+        'B' : [25, 10, 15, 16, 12, 34, 11, 17],
+        'C' : [56, np.nan, 45, 59, 69, 15, np.nan, 12]}
+
+df = pd.DataFrame(data, columns=['A', 'B', 'C'])
+
+print("The Given DataFrame is :\n", df, "\n")
+
+new_df = df[(df['A'] > 5) & (df['B'] >=10) & (df['B'] <= 20) & (df['C'])].sort_values(by=['A'], ascending = False)
+
+print("The New DataFrame is :\n", new_df)
+```
+
+Output :
+
+```python
+The Given DataFrame is :
+      A   B     C
+0  13.0  25  56.0
+1  34.0  10   NaN
+2  11.0  15  45.0
+3  17.0  16  59.0
+4  12.0  12  69.0
+5   NaN  34  15.0
+6  45.0  11   NaN
+7   4.0  17  12.0 
+
+The New DataFrame is :
+      A   B     C
+3  17.0  16  59.0
+4  12.0  12  69.0
+2  11.0  15  45.0
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Q : You are required to write a program to sort the (name, age, score) tuples by ascending order where name is string, age and score are numbers. The tuples are input by console. The sort criteria is:
 
 1: Sort based on name;<br>
